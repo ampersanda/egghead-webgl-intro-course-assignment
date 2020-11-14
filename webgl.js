@@ -1,5 +1,6 @@
 let gl,
-    shaderProgram;
+    shaderProgram,
+    vertices;
 
 initGL();
 createShaders();
@@ -47,11 +48,33 @@ function createShaders() {
 }
 
 function createVertices() {
+  vertices = [
+    -0.9, -0.9, 0.0,
+     0.9, -0.9, 0.0,
+     0.0, 0.9, 0.0
+  ];
+
+  let buffer = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+
   const coords = gl.getAttribLocation(shaderProgram, 'coords');
-  gl.vertexAttrib3f(coords, 0.0, 0.0, 0.0);
+  // gl.vertexAttrib3f(coords, 0.0, 0.0, 0.0);
+  gl.vertexAttribPointer(
+    coords,
+    3, // 3 dimensional
+    gl.FLOAT,
+    false, 0, 0
+  );
+
+  gl.enableVertexAttribArray(coords);
+  gl.bindBuffer(
+    gl.ARRAY_BUFFER,
+    null // unbind
+  );
 
   const size = gl.getAttribLocation(shaderProgram, 'size');
-  gl.vertexAttrib1f(size, 100.0);
+  gl.vertexAttrib1f(size, 10.0);
 
   const color = gl.getUniformLocation(shaderProgram, 'color');
   gl.uniform4f(color, 0, 1, 0, 1);
@@ -59,5 +82,7 @@ function createVertices() {
 
 function draw() {
   gl.clear(gl.COLOR_BUFFER_BIT);
-  gl.drawArrays(gl.POINTS, 0, 1);
+  gl.drawArrays(gl.POINTS, 0,
+   3 // points count
+  );
 }
