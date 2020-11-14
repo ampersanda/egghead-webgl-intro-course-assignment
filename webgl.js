@@ -19,7 +19,7 @@ function createShaders() {
   vertexShaderSource += "attribute float size;";
   vertexShaderSource += '';
   vertexShaderSource += "void main(void) {";
-  vertexShaderSource += "  gl_Position = vec4(0.0, 0.0, 0.0, 1.0);";
+  vertexShaderSource += "  gl_Position = coords;";
   vertexShaderSource += "  gl_PointSize = size;";
   vertexShaderSource += "}";
 
