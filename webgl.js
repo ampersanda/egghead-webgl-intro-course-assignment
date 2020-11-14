@@ -51,7 +51,10 @@ function createVertices() {
   vertices = [
     -0.9, -0.9, 0.0,
      0.9, -0.9, 0.0,
-     0.0, 0.9, 0.0
+     0.9, -0.9, 0.0,
+     0.0,  0.9, 0.0,
+     0.0,  0.9, 0.0,
+    -0.9, -0.9, 0.0
   ];
 
   let buffer = gl.createBuffer();
@@ -82,7 +85,8 @@ function createVertices() {
 
 function draw() {
   gl.clear(gl.COLOR_BUFFER_BIT);
-  gl.drawArrays(gl.POINTS, 0,
-   3 // points count
-  );
+  // gl.drawArrays(gl.POINTS, 0,
+  // 3 // points count
+  // );
+   gl.drawArrays(gl.LINES, 0, 6);
 }
