@@ -85,5 +85,6 @@ function draw() {
   // gl.drawArrays(gl.POINTS, 0,
   // 3 // points count
   // );
-   gl.drawArrays(gl.LINE_STRIP, 0, 3);
+  gl.drawArrays(gl.LINE_LOOP, 0, 3);
+
 }
